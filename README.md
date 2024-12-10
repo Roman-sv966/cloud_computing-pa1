@@ -28,3 +28,34 @@ This repository contains two Java applications that implement an AWS-based image
    - Instance A: Runs ImageCarDetector.
    - Instance B: Runs TextDetector.
 
+
+# To Instance A (ImageCarDetector)
+scp -i <your-key.pem> aws-dependencies.jar ImageCarDetector.java ec2-user@<instance-a-public-dns>:/home/ec2-user/
+
+# To Instance B (TextDetector)
+scp -i <your-key.pem> aws-dependencies.jar TextDetector.java ec2-user@<instance-b-public-dns>:/home/ec2-user/
+
+
+
+# SSH into each instance:
+ssh -i <your-key.pem> ec2-user@<instance-public-dns>
+
+# Install Java 11:
+sudo yum install -y java-11-amazon-corretto-devel
+
+# Verify the installation:
+java -version
+
+
+
+# Create a credentials file:
+mkdir ~/.aws
+nano ~/.aws/credentials
+
+# Add your AWS credentials:
+
+[default]
+aws_access_key_id = YOUR_ACCESS_KEY
+aws_secret_access_key = YOUR_SECRET_KEY
+aws_session_token = YOUR_SESSION_TOKEN
+
